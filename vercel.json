@@ -23,7 +23,7 @@
       ]
     },
     {
-      "source": "/(styles.css)",
+      "source": "/(styles.css|main.js)",
       "headers": [
         {
           "key": "Cache-Control",
