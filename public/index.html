@@ -3,10 +3,18 @@
 <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
-  <title>DEBESER · La Banda de Rock más Joven de Argentina | Web Oficial</title>
+  <title>DEBESER · La Banda de Rock más Joven de Argentina | Web & App Oficial</title>
   <meta name="description" content="DEBESER es la banda de rock más joven del país (16 a 20 años). Formada en 2023 en Córdoba. EPs editados, videoclips oficiales y apertura de La Vela Puerca en Plaza de la Música."/>
   <meta name="theme-color" content="#131316"/>
   
+  <!-- PWA & Mobile Web App Meta Tags -->
+  <link rel="manifest" href="/manifest.json"/>
+  <meta name="mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+  <meta name="apple-mobile-web-app-title" content="DEBESER"/>
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png"/>
+
   <!-- Open Graph / Redes Sociales -->
   <meta property="og:type" content="website"/>
   <meta property="og:title" content="DEBESER · La Banda de Rock más Joven de Argentina"/>
@@ -66,11 +74,18 @@
         <a href="#contacto" class="text-tertiary hover:text-white transition-colors">Booking</a>
       </nav>
 
-      <!-- Right Header Actions: WhatsApp Quick + Menu Toggle -->
+      <!-- Right Header Actions: Install Button + WhatsApp + Menu Toggle -->
       <div class="flex items-center gap-2">
-        <a href="https://wa.me/5493515435018?text=Hola%20DEBESER!%20Nos%20comunicamos%20por..." target="_blank" rel="noopener noreferrer" class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-xs font-semibold uppercase tracking-wider text-tertiary transition-colors" title="Contacto directo por WhatsApp">
+        
+        <!-- PWA Install Button (Header) -->
+        <button type="button" class="pwa-install-btn flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-tertiary/15 hover:bg-tertiary/25 text-tertiary border border-tertiary/30 text-xs font-bold uppercase tracking-wider transition-all shadow-[0_0_12px_rgba(15,225,162,0.2)]" title="Instalar DEBESER como App en tu celular">
+          <span class="material-symbols-outlined text-[17px]">install_mobile</span>
+          <span class="hidden sm:inline">Instalar App</span>
+        </button>
+
+        <a href="https://wa.me/5493516990649?text=Hola%20DEBESER!%20Nos%20comunicamos%20por..." target="_blank" rel="noopener noreferrer" class="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-xs font-semibold uppercase tracking-wider text-on-surface hover:text-tertiary transition-colors" title="Contacto directo por WhatsApp">
           <span class="material-symbols-outlined text-[16px]">chat</span>
-          <span>+54 9 3515 43-5018</span>
+          <span>WhatsApp</span>
         </a>
 
         <button id="menu-btn" aria-label="Abrir Menú de Navegación y Redes" class="w-11 h-11 flex items-center justify-center rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50">
@@ -111,8 +126,16 @@
         </button>
       </div>
 
+      <!-- Install App Fast CTA inside Drawer -->
+      <div class="pt-4">
+        <button type="button" class="pwa-install-btn w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-tertiary/20 to-tertiary-container/30 border border-tertiary/40 text-tertiary hover:brightness-110 font-bold uppercase text-xs tracking-wider flex items-center justify-center gap-2 transition-all shadow-[0_0_15px_rgba(15,225,162,0.2)]">
+          <span class="material-symbols-outlined text-[19px]">install_mobile</span>
+          <span>Descargar App en tu Celu</span>
+        </button>
+      </div>
+
       <!-- Navigation Links -->
-      <nav class="flex flex-col gap-2 py-6">
+      <nav class="flex flex-col gap-2 py-4">
         <a href="#inicio" class="nav-drawer-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface hover:bg-surface-container hover:text-primary transition-colors font-semibold uppercase text-sm tracking-wider">
           <span class="material-symbols-outlined text-[20px] text-primary">home</span>
           <span>Inicio</span>
@@ -145,18 +168,18 @@
           <span class="material-symbols-outlined text-[20px] text-primary">qr_code_2</span>
           <span>Redes & Código QR</span>
         </a>
-        <a href="#contacto" class="nav-drawer-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-tertiary bg-tertiary/10 hover:bg-tertiary/20 transition-colors font-bold uppercase text-sm tracking-wider mt-2">
+        <a href="#contacto" class="nav-drawer-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-tertiary bg-tertiary/10 hover:bg-tertiary/20 transition-colors font-bold uppercase text-sm tracking-wider mt-1">
           <span class="material-symbols-outlined text-[20px]">contacts</span>
           <span>Contacto & Booking</span>
         </a>
       </nav>
 
       <!-- Redes Sociales Rápidas en el Drawer -->
-      <div class="mt-auto pt-6 border-t border-white/10 flex flex-col gap-3">
+      <div class="mt-auto pt-4 border-t border-white/10 flex flex-col gap-3">
         <span class="text-xs uppercase tracking-widest text-on-surface-variant font-bold">Conectá con nosotros</span>
         <div class="grid grid-cols-2 gap-2">
           <a href="https://www.tiktok.com/@debeser.ok" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 p-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-xs text-on-surface hover:text-primary transition-colors">
-            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.88 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.3 0 .59.05.86.13V9.43a6.34 6.34 0 0 0-.86-.06 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V9.08c1.33.95 2.94 1.51 4.67 1.55V7.18a4.83 4.83 0 0 1-1.75-.49z"/></svg>
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.88 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.3 0 .59.05.86.13V9.43a6.34 6.34 0 0 0-.86-.06 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V9.08c1.33.95 2.94 1.51 4.67 1.55V7.18a4.83 4.83 0 0 1-1.75-.49z"/></svg>
             <span>TikTok</span>
           </a>
           <a href="https://www.instagram.com/debeser.ok" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 p-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-xs text-on-surface hover:text-primary transition-colors">
@@ -173,6 +196,62 @@
           </a>
         </div>
       </div>
+
+    </div>
+  </div>
+
+  <!-- ==================== MODAL DE INSTALACIÓN (PWA) ==================== -->
+  <div id="install-modal" class="fixed inset-0 z-50 pointer-events-none opacity-0 transition-opacity duration-300 flex items-center justify-center p-4">
+    <!-- Backdrop -->
+    <div id="modal-backdrop" class="absolute inset-0 bg-black/80 backdrop-blur-sm cursor-pointer"></div>
+
+    <!-- Modal Box -->
+    <div class="relative w-full max-w-md bg-surface-container-low border border-tertiary/40 rounded-2xl shadow-2xl p-6 z-10 flex flex-col gap-4 text-center">
+      
+      <div class="mx-auto w-16 h-16 rounded-2xl bg-surface-container-high border-2 border-primary-container p-2 flex items-center justify-center shadow-[0_0_20px_rgba(255,83,86,0.4)]">
+        <svg viewBox="0 0 100 100" class="w-full h-full text-white" fill="none">
+          <circle cx="50" cy="50" r="45" stroke="currentColor" stroke-width="7"/>
+          <text x="50" y="44" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-weight="900" font-size="34" fill="currentColor">DB</text>
+          <line x1="16" y1="50" x2="84" y2="50" stroke="currentColor" stroke-width="2" stroke-opacity="0.4"/>
+          <text x="50" y="80" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-weight="900" font-size="34" fill="currentColor">SR</text>
+        </svg>
+      </div>
+
+      <div>
+        <h3 class="font-headline-sm text-lg font-bold uppercase text-white">Instalá la App de DEBESER</h3>
+        <p class="text-xs text-on-surface-variant mt-1 leading-relaxed">
+          Tené a la banda directamente en la pantalla de tu celular como una aplicación nativa: sin barras del navegador y con acceso instantáneo.
+        </p>
+      </div>
+
+      <!-- Instrucciones según sistema -->
+      <div class="bg-surface-container rounded-xl p-4 text-left border border-white/10 flex flex-col gap-3">
+        
+        <!-- Paso iPhone -->
+        <div class="flex items-start gap-3">
+          <span class="w-6 h-6 rounded-full bg-tertiary/20 text-tertiary font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">1</span>
+          <div class="text-xs text-on-surface-variant">
+            <strong class="text-white block mb-0.5">En iPhone (Safari):</strong>
+            Tocá el botón <strong class="text-tertiary">Compartir</strong> (icono <span class="material-symbols-outlined text-[14px] align-middle">ios_share</span> en la barra inferior) y seleccioná <strong class="text-white">"Agregar a inicio"</strong> ➕.
+          </div>
+        </div>
+
+        <div class="h-px bg-white/5"></div>
+
+        <!-- Paso Android -->
+        <div class="flex items-start gap-3">
+          <span class="w-6 h-6 rounded-full bg-primary-container/20 text-primary font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">2</span>
+          <div class="text-xs text-on-surface-variant">
+            <strong class="text-white block mb-0.5">En Android (Chrome):</strong>
+            Tocá el menú de <strong class="text-primary">tres puntos (⋮)</strong> arriba a la derecha y elegí <strong class="text-white">"Instalar aplicación"</strong> o "Agregar a la pantalla principal".
+          </div>
+        </div>
+
+      </div>
+
+      <button id="modal-close" type="button" class="w-full py-3 rounded-xl bg-primary-container text-on-primary-container font-headline-sm text-sm font-bold uppercase tracking-wider hover:brightness-110 active:scale-[0.98] transition-all shadow-[0_0_15px_rgba(255,83,86,0.3)]">
+        ¡Entendido!
+      </button>
 
     </div>
   </div>
@@ -224,11 +303,18 @@
 
                 <!-- Actions -->
                 <div class="hero-actions flex flex-col gap-2 pt-3">
-                  <a class="w-full h-12 flex items-center justify-center gap-2 rounded-xl bg-primary-container text-on-primary-container font-headline-sm text-headline-sm tracking-wide uppercase hover:brightness-110 active:scale-[0.98] transition-all shadow-[0_0_20px_rgba(255,83,86,0.45)] font-bold" href="https://open.spotify.com/track/5D2naNvLkTUy7kvrrEXUJY" rel="noopener noreferrer" target="_blank">
-                    <svg class="w-5 h-5 fill-current" viewbox="0 0 24 24">
+                  
+                  <!-- BOTÓN DESCARGAR / INSTALAR APP EN EL CELULAR -->
+                  <button type="button" class="pwa-install-btn w-full h-11 flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-tertiary/20 via-tertiary/30 to-tertiary/20 border border-tertiary/40 text-tertiary hover:brightness-110 active:scale-[0.98] transition-all font-bold uppercase text-xs tracking-wider shadow-[0_0_15px_rgba(15,225,162,0.25)]">
+                    <span class="material-symbols-outlined text-[19px]">install_mobile</span>
+                    <span>Descargar App en tu Celular</span>
+                  </button>
+
+                  <a class="w-full h-11 flex items-center justify-center gap-2 rounded-xl bg-primary-container text-on-primary-container font-headline-sm text-xs tracking-wide uppercase hover:brightness-110 active:scale-[0.98] transition-all shadow-[0_0_20px_rgba(255,83,86,0.45)] font-bold" href="https://open.spotify.com/track/5D2naNvLkTUy7kvrrEXUJY" rel="noopener noreferrer" target="_blank">
+                    <svg class="w-4 h-4 fill-current" viewbox="0 0 24 24">
                       <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.503 17.306c-.215.353-.676.467-1.03.252-2.825-1.726-6.381-2.116-10.57-1.158-.403.092-.806-.157-.899-.56-.092-.404.157-.807.56-.899 4.588-1.047 8.528-.602 11.687 1.334.354.215.467.676.252 1.031zm1.468-3.262c-.27.441-.849.58-1.29.31-3.234-1.988-8.163-2.564-11.989-1.402-.499.151-1.031-.131-1.183-.63-.151-.499.131-1.031.63-1.183 4.375-1.33 9.805-.688 13.522 1.614.441.27.58.85.31 1.291zm.126-3.411c-3.878-2.302-10.278-2.514-13.987-1.388-.595.181-1.229-.158-1.41-.754-.182-.595.158-1.23.754-1.41 4.257-1.292 11.319-1.047 15.794 1.61.536.319.711 1.012.392 1.549-.319.537-1.012.711-1.543.393z"></path>
                     </svg>
-                    <span>Escuchar "La banda más joven"</span>
+                    <span>Escuchar Single en Spotify</span>
                   </a>
 
                   <div class="grid grid-cols-2 gap-2">
@@ -237,7 +323,7 @@
                       <span data-label="" aria-live="polite">Compartir</span>
                     </button>
 
-                    <a href="#contacto" class="h-10 flex items-center justify-center gap-1.5 rounded-lg bg-surface-container/70 backdrop-blur-md text-tertiary hover:bg-tertiary/20 transition-all font-label-md text-label-md uppercase tracking-wider border border-tertiary/20">
+                    <a href="#contacto" class="h-10 flex items-center justify-center gap-1.5 rounded-lg bg-surface-container/70 backdrop-blur-md text-on-surface hover:text-tertiary transition-all font-label-md text-label-md uppercase tracking-wider border border-white/5">
                       <span class="material-symbols-outlined text-[18px]">calendar_month</span>
                       <span>Booking / Shows</span>
                     </a>
@@ -261,7 +347,7 @@
             Contrataciones para festivales, salas y prensa en todo el país.
           </p>
           <div class="flex items-center gap-2 mt-3">
-            <a href="https://wa.me/5493515435018?text=Hola%20DEBESER!%20Nos%20comunicamos%20por..." target="_blank" rel="noopener noreferrer" class="flex-1 py-2 px-3 rounded-lg bg-tertiary/15 hover:bg-tertiary/25 text-tertiary border border-tertiary/30 text-xs font-bold uppercase tracking-wider text-center transition-colors flex items-center justify-center gap-1.5">
+            <a href="https://wa.me/5493516990649?text=Hola%20DEBESER!%20Nos%20comunicamos%20por..." target="_blank" rel="noopener noreferrer" class="flex-1 py-2 px-3 rounded-lg bg-tertiary/15 hover:bg-tertiary/25 text-tertiary border border-tertiary/30 text-xs font-bold uppercase tracking-wider text-center transition-colors flex items-center justify-center gap-1.5">
               <span class="material-symbols-outlined text-[16px]">chat</span>
               <span>WhatsApp Directo</span>
             </a>
@@ -600,7 +686,7 @@
               
               <!-- TikTok -->
               <a class="flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface hover:text-primary transition-colors font-label-md text-xs uppercase tracking-wider font-bold border border-white/5" href="https://www.tiktok.com/@debeser.ok" rel="noopener noreferrer" target="_blank">
-                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.88 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.3 0 .59.05.86.13V9.43a6.34 6.34 0 0 0-.86-.06 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V9.08c1.33.95 2.94 1.51 4.67 1.55V7.18a4.83 4.83 0 0 1-1.75-.49z"/></svg>
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.88 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.3 0 .59.05.86.13V9.43a6.34 6.34 0 0 0-.86-.06 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V9.08c1.33.95 2.94 1.51 4.67 1.55V7.18a4.83 4.83 0 0 1-1.75-.49z"/></svg>
                 <span>TikTok</span>
               </a>
 
@@ -646,13 +732,13 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
               
               <!-- Botón WhatsApp -->
-              <a href="https://wa.me/5493515435018?text=Hola%20DEBESER!%20Nos%20comunicamos%20por..." target="_blank" rel="noopener noreferrer" class="p-3.5 rounded-xl bg-surface-container-high hover:bg-surface-container-highest border border-tertiary/30 hover:border-tertiary transition-all flex items-center gap-3 group">
+              <a href="https://wa.me/5493516990649?text=Hola%20DEBESER!%20Nos%20comunicamos%20por..." target="_blank" rel="noopener noreferrer" class="p-3.5 rounded-xl bg-surface-container-high hover:bg-surface-container-highest border border-tertiary/30 hover:border-tertiary transition-all flex items-center gap-3 group">
                 <div class="w-10 h-10 rounded-lg bg-tertiary/15 text-tertiary flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
                   <span class="material-symbols-outlined text-[20px]">chat</span>
                 </div>
                 <div class="overflow-hidden">
                   <span class="text-[10px] font-bold uppercase tracking-wider text-tertiary block">WhatsApp / Teléfono</span>
-                  <span class="text-sm font-bold text-white block truncate">+54 9 3515 43-5018</span>
+                  <span class="text-sm font-bold text-white block truncate">+54 9 351 6990649</span>
                 </div>
               </a>
 

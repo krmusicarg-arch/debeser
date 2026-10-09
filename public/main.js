@@ -1,4 +1,89 @@
 (function () {
+  // --- Registrar Service Worker para PWA ---
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js').catch((err) => {
+        console.log('Error registrando Service Worker:', err);
+      });
+    });
+  }
+
+  // --- Lógica de Instalación de la App (PWA) ---
+  let deferredPrompt = null;
+  const installBtns = document.querySelectorAll('.pwa-install-btn');
+  const installModal = document.getElementById('install-modal');
+  const modalClose = document.getElementById('modal-close');
+  const modalBackdrop = document.getElementById('modal-backdrop');
+
+  const isIos = () => {
+    const ua = window.navigator.userAgent.toLowerCase();
+    return /iphone|ipad|ipod/.test(ua);
+  };
+
+  const isStandalone = () => {
+    return (window.matchMedia('(display-mode: standalone)').matches) || (window.navigator.standalone === true);
+  };
+
+  // Capturar el evento de instalación nativo en navegadores Chromium/Android
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+  });
+
+  window.addEventListener('appinstalled', () => {
+    deferredPrompt = null;
+    installBtns.forEach(btn => {
+      btn.innerHTML = '<span class="material-symbols-outlined text-[18px]">check_circle</span><span>App Instalada</span>';
+      btn.classList.add('opacity-80', 'pointer-events-none');
+    });
+  });
+
+  // Si ya está abierta como aplicación instalada
+  if (isStandalone()) {
+    installBtns.forEach(btn => {
+      btn.innerHTML = '<span class="material-symbols-outlined text-[18px]">check_circle</span><span>App Instalada</span>';
+      btn.classList.add('opacity-80', 'pointer-events-none');
+    });
+  }
+
+  function showModal() {
+    if (!installModal) return;
+    installModal.classList.remove('pointer-events-none', 'opacity-0');
+    installModal.classList.add('pointer-events-auto', 'opacity-100');
+  }
+
+  function closeModal() {
+    if (!installModal) return;
+    installModal.classList.remove('pointer-events-auto', 'opacity-100');
+    installModal.classList.add('pointer-events-none', 'opacity-0');
+  }
+
+  function handleInstallClick() {
+    if (isStandalone()) {
+      return;
+    }
+
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+          console.log('El usuario instaló la aplicación');
+        }
+        deferredPrompt = null;
+      });
+    } else {
+      // Mostrar modal explicativo con instrucciones para iPhone (iOS) y otros navegadores
+      showModal();
+    }
+  }
+
+  installBtns.forEach(btn => {
+    btn.addEventListener('click', handleInstallClick);
+  });
+
+  if (modalClose) modalClose.addEventListener('click', closeModal);
+  if (modalBackdrop) modalBackdrop.addEventListener('click', closeModal);
+
   // --- Botón de Compartir ---
   const shareBtn = document.getElementById('share-btn');
   if (shareBtn) {
@@ -26,12 +111,11 @@
     }
 
     shareBtn.addEventListener('click', async () => {
-      // 1) Diálogo nativo del sistema (en móviles)
       if (navigator.share) {
         try {
           await navigator.share({
             title: 'DEBESER · La Banda de Rock más Joven de Argentina',
-            text: 'Escuchá a DEBESER, rock enérgico y juvenil de Córdoba (16-20 años).',
+            text: 'Descubrí a DEBESER, rock enérgico y juvenil de Córdoba (16-20 años).',
             url
           });
           return;
@@ -39,7 +123,6 @@
           if (err && err.name === 'AbortError') return;
         }
       }
-      // 2) Copiar enlace
       try {
         await navigator.clipboard.writeText(url);
         flash('¡Link copiado!');
@@ -70,15 +153,10 @@
     document.body.classList.remove('overflow-hidden');
   }
 
-  if (menuBtn) {
-    menuBtn.addEventListener('click', openMenu);
-  }
-  if (menuClose) {
-    menuClose.addEventListener('click', closeMenu);
-  }
-  if (menuOverlay) {
-    menuOverlay.addEventListener('click', closeMenu);
-  }
+  if (menuBtn) menuBtn.addEventListener('click', openMenu);
+  if (menuClose) menuClose.addEventListener('click', closeMenu);
+  if (menuOverlay) menuOverlay.addEventListener('click', closeMenu);
+
   navLinks.forEach(link => {
     link.addEventListener('click', () => {
       closeMenu();
@@ -86,8 +164,13 @@
   });
 
   window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && menuDrawer && !menuDrawer.classList.contains('opacity-0')) {
-      closeMenu();
+    if (e.key === 'Escape') {
+      if (menuDrawer && !menuDrawer.classList.contains('opacity-0')) {
+        closeMenu();
+      }
+      if (installModal && !installModal.classList.contains('opacity-0')) {
+        closeModal();
+      }
     }
   });
 })();
